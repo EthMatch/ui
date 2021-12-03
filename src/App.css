@@ -1,0 +1,9 @@
+.sidebar-main {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar-screens {
+  display: flex;
+  flex: 8;
+}
