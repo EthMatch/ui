@@ -45,6 +45,9 @@ export const Ncard = () => {
           paddingLeft: '20px',
           paddingRight: '20px',
           marginBottom: '40px',
+          webkitBoxShadow: `0px 0px 15px 0px rgba(255,70,85,0.9)`,
+          mozBoxShadow: `0px 0px 15px 0px rgba(255,70,85,0.9)`,
+          boxShadow: `0px 0px 15px 0px rgba(255,70,85,0.9)`,
         }}
       >
         <FormControl
