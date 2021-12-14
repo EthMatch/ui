@@ -1,14 +1,25 @@
 import { Container, Grid, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
 import React from 'react'
-import { Lcard } from '../../components/Lcard/Lcard'
-import { Ncard } from '../../components/Ncard/Ncard'
-
-import './home.css'
-
-const useStyles = makeStyles({})
-function Home() {
-  const classes = useStyles()
+import { Lobbycard } from '../../components/Lobbycard/Lobbycard'
+import './lobbies.css'
+const info = {
+  statusCode: 200,
+  message: 'fetched gameSessions',
+  data: {
+    lobby_id:
+      '0x54dcfb0f312ab463668d82554ca8b3bc91b77c8d8d22ca16759dedc56ed7559b',
+    max_players: 2,
+    lobby_ready: false,
+    timeout: '1970-01-20T04:53:58.000000253+05:30',
+    game_log: '',
+    allowed_players: [
+      '0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f',
+      '0x70997970c51812dc3a010c7d01b50e0d17dc79c8',
+    ],
+    completed: true,
+  },
+}
+export const Lobbies = () => {
   return (
     <>
       <Grid container>
@@ -24,9 +35,8 @@ function Home() {
             borderRadius: '10px',
           }}
         >
-          <Ncard />
           <Typography
-            variant='h4'
+            variant='h5'
             sx={{
               color: 'white',
               fontFamily: 'valo',
@@ -35,33 +45,33 @@ function Home() {
               marginBottom: '20px',
             }}
           >
-            Proposals
+            Game Sessions
           </Typography>
           <Container
             sx={{
               width: '100%',
               padding: '0 !important',
               margin: 0,
-              maxHeight: '60vh',
+              maxHeight: '70vh',
               backgroundColor: 'black',
               borderRadius: '10px',
               overflowY: 'scroll',
             }}
             className='scrollbar'
           >
-            <Lcard />
-            <Lcard />
-            <Lcard />
-            <Lcard />
-            <Lcard />
-            <Lcard />
-            <Lcard />
-            <Lcard />
+            <Lobbycard
+              id={info.data.lobby_id.slice(0, 30) + '...'}
+              status={info.data.completed}
+            />
+            <Lobbycard />
+            <Lobbycard />
+            <Lobbycard />
+            <Lobbycard />
+            <Lobbycard />
+            <Lobbycard />
           </Container>
         </Grid>
       </Grid>
     </>
   )
 }
-
-export default Home

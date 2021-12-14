@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem'
 import { makeStyles } from '@mui/styles'
 import Logo from '../../assets/images/ethlogo.webp'
 import meta from '../../assets/images/meta.svg'
+import { useNavigate } from 'react-router-dom'
+
 const useStyles = makeStyles({
   headBtn: {
     padding: '7.5px 16px !important',
@@ -57,17 +59,19 @@ const useStyles = makeStyles({
   },
 })
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ active, setActive }) => {
   const classes = useStyles()
   const [anchorElNav, setAnchorElNav] = React.useState(null)
   const [anchorElUser, setAnchorElUser] = React.useState(null)
-  const [active, setActive] = useState('lobbies')
+  let navigate = useNavigate()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget)
+    event.preventDefault()
   }
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget)
+    event.preventDefault()
   }
 
   const handleCloseNavMenu = () => {
@@ -130,13 +134,13 @@ const ResponsiveAppBar = () => {
               }}
             >
               <MenuItem>
+                <Button>Home</Button>
+              </MenuItem>
+              <MenuItem>
                 <Button>Lobbies</Button>
               </MenuItem>
               <MenuItem>
-                <Button>Games</Button>
-              </MenuItem>
-              <MenuItem>
-                <Button>Matches</Button>
+                <Button>Wallet</Button>
               </MenuItem>
             </Menu>
           </Box>
@@ -160,10 +164,23 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Button
               className={
-                active === 'lobbies' ? classes.activeHead : classes.headBtn
+                active === 'Home' ? classes.activeHead : classes.headBtn
               }
               onClick={() => {
-                setActive('lobbies')
+                setActive('Home')
+                navigate('../', { replace: true })
+              }}
+            >
+              Home
+            </Button>
+
+            <Button
+              className={
+                active === 'Lobbies' ? classes.activeHead : classes.headBtn
+              }
+              onClick={() => {
+                setActive('Lobbies')
+                navigate('../lobbies', { replace: true })
               }}
             >
               Lobbies
@@ -171,24 +188,13 @@ const ResponsiveAppBar = () => {
 
             <Button
               className={
-                active === 'games' ? classes.activeHead : classes.headBtn
+                active === 'Wallet' ? classes.activeHead : classes.headBtn
               }
               onClick={() => {
-                setActive('games')
+                setActive('Wallet')
               }}
             >
-              Games
-            </Button>
-
-            <Button
-              className={
-                active === 'matches' ? classes.activeHead : classes.headBtn
-              }
-              onClick={() => {
-                setActive('matches')
-              }}
-            >
-              Matches
+              Wallet
             </Button>
           </Box>
 
